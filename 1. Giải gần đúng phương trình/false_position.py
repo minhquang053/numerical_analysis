@@ -1,6 +1,6 @@
 import numpy as np
 
-def secant(init_p_0: float, init_p_1: float, TOL: float, N_0: int) -> float:
+def secant(init_p_0: float, init_p_1: float, TOL: float, N_0: int):
     '''
     INPUT initial approximations p0 , p1 ; tolerance TOL; maximum number of iterations N0 .
     OUTPUT approximate solution p or message of failure.

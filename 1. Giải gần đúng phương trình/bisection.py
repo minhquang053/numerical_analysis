@@ -1,4 +1,4 @@
-def bisection(a: float, b: float, TOL: float, N_0: int) -> float:
+def bisection(a: float, b: float, TOL: float, N_0: int):
     '''
     INPUT endpoints a, b; tolerance TOL; maximum number of iterations N0 .
     OUTPUT approximate solution p or message of failure.

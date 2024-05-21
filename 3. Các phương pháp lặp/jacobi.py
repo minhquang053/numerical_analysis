@@ -1,6 +1,6 @@
 import numpy as np
 
-def gauss_seidel_iterative(n: int, A: np.ndarray, b: np.ndarray, XO: np.ndarray, TOL: float, N: int):
+def jacobi_iterative(n: int, A: np.ndarray, b: np.ndarray, XO: np.ndarray, TOL: float, N: int):
     '''
     INPUT the number of equations and unknowns n; the entries ai j , 1 ≤ i, j ≤ n of the matrix A; the entries bi , 1 ≤ i ≤ n of b; the entries XOi , 1 ≤ i ≤ n of XO = x(0) ; tolerance TOL; maximum number of iterations N.
     OUTPUT the approximate solution x1 , . . . , xn or a message that the number of iterations was exceeded.
@@ -11,7 +11,7 @@ def gauss_seidel_iterative(n: int, A: np.ndarray, b: np.ndarray, XO: np.ndarray,
     try:
         while k <= N:
             for i in range(n):
-                x[i] = 1/A[i][i] * (-np.sum([A[i][j]*x[j] for j in range(i)]) - np.sum([A[i][j]*XO[j] for j in range(i+1, n)]) + b[i])
+                x[i] = 1/A[i][i] * (-np.sum([A[i][j] * XO[j] for j in range(n) if j != i]) + b[i])
             print(f"x^({k}) = {x}")
             if np.linalg.norm(x - XO) < TOL:
                 print(f"\nThe result is {x}")
@@ -38,4 +38,4 @@ if __name__ == '__main__':
     N = 20
     print(f"Inital approx: {XO}")
 
-    gauss_seidel_iterative(len(A), A, b, XO, TOL, N)
+    jacobi_iterative(len(A), A, b, XO, TOL, N)

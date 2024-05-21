@@ -1,7 +1,6 @@
 import numpy as np
-import copy
 
-def gauss_elimination_backward_substitution(n: int, A: np.ndarray) -> float:
+def gauss_elimination_backward_substitution(n: int, A: np.ndarray):
     '''
     INPUT number of unknowns and equations n; augmented matrix A = [ai j ], where 1 ≤ i ≤ n and 1 ≤ j ≤ n + 1.
     OUTPUT solution x1, x2 ,..., xn or message that the linear system has no unique solution.

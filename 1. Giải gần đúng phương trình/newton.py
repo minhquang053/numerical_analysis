@@ -1,7 +1,7 @@
 import autograd.numpy as np
 from autograd import grad
 
-def newton(initial_p: float, TOL: float, N_0: int) -> float:
+def newton(initial_p: float, TOL: float, N_0: int):
     '''
     INPUT initial approximation p0 ; tolerance TOL; maximum number of iterations N0 .
     OUTPUT approximate solution p or message of failure.
