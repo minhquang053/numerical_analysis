@@ -1,5 +1,4 @@
 import numpy as np
-from utils import plot_points_and_points
 
 
 def linear_least_squares():

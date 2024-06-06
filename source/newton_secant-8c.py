@@ -1,14 +1,11 @@
 import numpy as np
 
 
-def false_position(init_p_0: float, init_p_1: float, TOL: float, N_0: int):
+def secant(init_p_0: float, init_p_1: float, TOL: float, N_0: int):
     """
     INPUT initial approximations p0 , p1 ; tolerance TOL; maximum number of iterations N0 .
     OUTPUT approximate solution p or message of failure.
     """
-    assert (
-        f(init_p_0) * f(init_p_1) < 0
-    ), f"f({init_p_0}) * f({init_p_1}) must be negative"
     print("\nStart iterating...")
     p_0 = init_p_0
     p_1 = init_p_1
@@ -23,12 +20,10 @@ def false_position(init_p_0: float, init_p_1: float, TOL: float, N_0: int):
                 print(f"\nThe result is {p}")
                 return
             i += 1
-            q = f(p)
-            if q * q_1 < 0:
-                p_0 = p_1
-                q_0 = q_1
+            p_0 = p_1
+            q_0 = q_1
             p_1 = p
-            q_1 = q
+            q_1 = f(p)
 
         print(f"\nMethod failed after {N_0} iterations")
     except OverflowError:
@@ -37,16 +32,23 @@ def false_position(init_p_0: float, init_p_1: float, TOL: float, N_0: int):
 
 
 def f(x: float) -> float:
-    return np.cos(x) - x
+    return 2 * x * np.cos(2 * x) - (x - 2) ** 2
 
 
 if __name__ == "__main__":
     print(
-        "False Position: To ﬁnd a solution to f(x) = 0 given the continuous function f on the interval [p_0,p_1] where f(p_0) and f(p_1) have opposite signs"
+        "Secant: To ﬁnd a solution to f(x) = 0 given initial approximations p_0 and p_1"
     )
-    p_0 = float(input("p_0 = "))
-    p_1 = float(input("p_1 = "))
-    tol = float(input("tolerance = "))
-    num_iters = int(input("max num iterations = "))
+    p_0 = 2.0
+    p_1 = 3.0
+    tol = 1e-5
+    num_iters = 100
 
-    false_position(p_0, p_1, tol, num_iters)
+    print(f"\nFor p_0 = {p_0} and p_1 = {p_1}:")
+    secant(p_0, p_1, tol, num_iters)
+
+    p_0 = 3.0
+    p_1 = 4.0
+
+    print(f"\nFor p_0 = {p_0} and p_1 = {p_1}:")
+    secant(p_0, p_1, tol, num_iters)
